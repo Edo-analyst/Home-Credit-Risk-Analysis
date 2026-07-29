@@ -1,4 +1,4 @@
-# Home Credit Default Risk — Binary Classification
+# Home Credit Default Risk 
 
 ## Project Overview
 End-to-end machine learning project to predict loan default probability using real-world data from Home Credit Group.
