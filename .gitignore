@@ -1,8 +1,13 @@
+# Environment
 venv/
+
+# Data — raw is downloaded from Kaggle, processed is rebuilt by the notebooks
 data/raw/
 data/processed/
+
+# Model artifacts
 models/
-__pycache__/
+*.joblib
+
+# Notebooks
 .ipynb_checkpoints/
-*.pkl
-notebooks/_wip_*.ipynb
