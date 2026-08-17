@@ -1,13 +1,13 @@
-# Environment
+# Virtual environment
 venv/
 
-# Data — raw is downloaded from Kaggle, processed is rebuilt by the notebooks
+# Datasets — too large for version control
 data/raw/
 data/processed/
 
-# Model artifacts
+# Fitted pipelines and models — rebuilt by running the notebooks
 models/
 *.joblib
 
-# Notebooks
+# Jupyter autosave folder
 .ipynb_checkpoints/
