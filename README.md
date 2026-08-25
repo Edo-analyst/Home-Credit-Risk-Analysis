@@ -21,5 +21,5 @@ Home Credit wants to predict which loan applicants are likely to default, enabli
 - `reports/figures/` — saved plots
 
 ## Project Status
-🔄 In progress — Phase 2 (EDA)
+🔄 In progress — Phase 3 (Preprocessing)
 
