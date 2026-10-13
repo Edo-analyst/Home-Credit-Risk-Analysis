@@ -20,6 +20,4 @@ Home Credit wants to predict which loan applicants are likely to default, enabli
 - `models/` — saved trained models
 - `reports/figures/` — saved plots
 
-## Project Status
-🔄 In progress — Phase 4 (Baseline Model)
 
