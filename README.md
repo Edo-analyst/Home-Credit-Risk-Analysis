@@ -8,10 +8,10 @@ Home Credit wants to predict which loan applicants are likely to default, enabli
 
 ## Tech Stack
 - Python, pandas, numpy
+- matplotlib, seaborn
 - scikit-learn (Pipeline, ColumnTransformer)
 - XGBoost, LightGBM
 - SHAP for model explainability
-- matplotlib, seaborn
 
 ## Project Structure
 - `data/` — raw and processed datasets
