@@ -7,7 +7,8 @@ End-to-end machine learning project to predict loan default probability using re
 Home Credit wants to predict which loan applicants are likely to default, enabling better lending decisions and reduced financial risk.
 
 ## Tech Stack
-- Python, pandas, numpy
+- Python
+- pandas, NumPy
 - matplotlib, seaborn
 - scikit-learn (Pipeline, ColumnTransformer, LogisticRegression, DecisionTreeClassifier)
 - XGBoost, LightGBM
