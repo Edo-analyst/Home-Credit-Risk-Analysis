@@ -58,7 +58,7 @@ LightGBM ranks first, at about 3× a random model, and overfits much less than X
 │   └── 05_interpretability.ipynb   # 🔜 SHAP
 ├── data/  
     ├── raw                     # raw data from Kaggle
-    ├── processed               # processed data (train/test) 
+    └── processed               # processed data (train/test) 
 ├── models/                     # saved pipelines & models
 ├── reports/figures/
 └── requirements.txt
