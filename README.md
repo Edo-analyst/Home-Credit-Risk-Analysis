@@ -53,9 +53,8 @@ LightGBM ranks first, at about 3× a random model, and overfits much less than X
 ├── notebooks/
 │   ├── 01_eda.ipynb                # ✅ exploratory analysis
 │   ├── 02_preprocessing.ipynb      # ✅ cleaning, features, pipelines
-│   ├── 03_modeling.ipynb           # ✅ model comparison
-│   ├── 04_evaluation.ipynb         # 🔜 test set, threshold, calibration
-│   └── 05_interpretability.ipynb   # 🔜 SHAP
+│   ├── 03_modeling.ipynb           # ✅ modeling, comparison
+│   └── 04_interpretability.ipynb   # 🔜 SHAP
 ├── data/  
     ├── raw                     # raw data from Kaggle
     └── processed               # processed data (train/test) 
@@ -76,7 +75,3 @@ pip install -r requirements.txt
 Download `application_train.csv` from [Kaggle](https://www.kaggle.com/competitions/home-credit-default-risk/data) into `data/raw/`, then run the notebooks in order.
 
 **Tech stack:** Python · pandas · NumPy · scikit-learn · XGBoost · LightGBM · SHAP · Matplotlib · Seaborn · Jupyter
-
----
-
-**Author:** [Edoardo Matterazzo](https://github.com/Edo-analyst) · Data Science | Machine Learning | Credit Risk
