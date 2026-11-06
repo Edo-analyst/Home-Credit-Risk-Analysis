@@ -24,14 +24,14 @@ Only **8.1%** of applicants defaulted. A model that approves everyone would be 9
 
 - **[EDA](notebooks/01_eda.ipynb):** missing values are mostly structural, not random. `DAYS_EMPLOYED` hides a placeholder value. External credit scores are by far the strongest predictors.
 - **[Preprocessing](notebooks/02_preprocessing.ipynb):** credit-to-income and instalment-to-income ratios, plus flags for informative missing values. There are two scikit-learn pipelines, one for linear models and one for tree models. Both are refitted inside every cross-validation fold to avoid **data leakage**.
-- **[Modeling](notebooks/03_modeling.ipynb):** five models tuned on the same 5-fold stratified cross-validation inside the training set, with class weights for the imbalance. They are then compared on the held-back validation set by **PR-AUC**, which focuses on the minority class (a random model scores 0.081), with **ROC-AUC** for comparison with Kaggle.
+- **[Modeling](notebooks/03_modeling.ipynb):** five models tuned on the same 5-fold stratified cross-validation inside the training set, with class weights for the imbalance. They are then compared on the held-back validation set by **AP** (Average Precision), which focuses on the minority class (a random model scores 0.081), with **ROC-AUC** for comparison with Kaggle.
 - **Interpretability:** Logistic Regression odds ratios and Random Forest feature importance so far; SHAP is planned.
 
 ## 📈 Results
 
 Hyperparameters are tuned by 5-fold cross-validation **inside the training set**. The validation set is held back from tuning entirely and used only to compare the five tuned models.
 
-| Model | CV PR-AUC | Val PR-AUC | CV ROC-AUC | Val ROC-AUC |
+| Model | CV AP | Val AP | CV ROC-AUC | Val ROC-AUC |
 | --- | --- | --- | --- | --- |
 | **LightGBM** | **0.240 ± 0.007** | **0.239** | **0.757** | **0.753** |
 | XGBoost | 0.239 ± 0.007 | 0.236 | 0.754 | 0.752 |
@@ -41,9 +41,9 @@ Hyperparameters are tuned by 5-fold cross-validation **inside the training set**
 
 ![ROC and Precision-Recall curves on the validation set](reports/figures/model_comparison_curves.png)
 
-LightGBM ranks first at roughly 3× the 0.081 no-skill rate, but its lead over XGBoost is 0.003 PR-AUC on validation — far inside the ±0.007 spread across folds. The two boosters are tied in practice, and the choice between them rests on training cost: 5.3 minutes against 7.6 for the same search budget.
+LightGBM ranks first at roughly 3× the 0.081 no-skill rate, but its lead over XGBoost is 0.003 AP on validation — far inside the ±0.007 spread across folds. The two boosters are tied in practice, and the choice between them rests on training cost: 5.3 minutes against 7.6 for the same search budget.
 
-Logistic Regression is the result worth noting. It trails Random Forest by 0.004 PR-AUC and edges ahead of it on ROC-AUC, while scoring only 0.002 higher on the data it was fitted to than on held-out folds — it is not overfitting at all. The boosters, by contrast, score about 0.05 higher on their own training data. They buy roughly 0.02 PR-AUC over the linear model, which is real but modest for the loss of a readable one.
+Logistic Regression is the result worth noting. It trails Random Forest by 0.004 AP and edges ahead of it on ROC-AUC, while scoring only 0.002 higher on the data it was fitted to than on held-out folds — it is not overfitting at all. The boosters, by contrast, score about 0.05 higher on their own training data. They buy roughly 0.02 AP over the linear model, which is real but modest for the loss of a readable one.
 
 🔜 The selected model will be tested once on the held-out set. Precision, recall and the confusion matrix will be reported at a threshold chosen on business costs.
 
