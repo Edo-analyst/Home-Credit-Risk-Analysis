@@ -39,8 +39,6 @@ Hyperparameters are tuned by 5-fold cross-validation **inside the training set**
 | Logistic Regression | 0.221 ± 0.010 | 0.217 | 0.746 | 0.742 |
 | Decision Tree | 0.193 ± 0.007 | 0.192 | 0.718 | 0.714 |
 
-![ROC and Precision-Recall curves on the validation set](reports/figures/model_comparison_curves.png)
-
 LightGBM ranks first at roughly 3× the 0.081 no-skill rate, but its lead over XGBoost is 0.003 AP on validation — far inside the ±0.007 spread across folds. The two boosters are tied in practice, and the choice between them rests on training cost: 5.3 minutes against 7.6 for the same search budget.
 
 Logistic Regression is the result worth noting. It trails Random Forest by 0.004 AP and edges ahead of it on ROC-AUC, while scoring only 0.002 higher on the data it was fitted to than on held-out folds — it is not overfitting at all. The boosters, by contrast, score about 0.05 higher on their own training data. They buy roughly 0.02 AP over the linear model, which is real but modest for the loss of a readable one.
