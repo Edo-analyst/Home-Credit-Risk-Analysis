@@ -43,8 +43,6 @@ LightGBM ranks first at roughly 3× the 0.081 no-skill rate, but its lead over X
 
 Logistic Regression is the result worth noting. It trails Random Forest by 0.004 AP and edges ahead of it on ROC-AUC, while scoring only 0.002 higher on the data it was fitted to than on held-out folds — it is not overfitting at all. The boosters, by contrast, score about 0.05 higher on their own training data. They buy roughly 0.02 AP over the linear model, which is real but modest for the loss of a readable one.
 
-🔜 The selected model will be tested once on the held-out set. Precision, recall and the confusion matrix will be reported at a threshold chosen on business costs.
-
 ## 📝 Future Work
 
 - [ ] Test-set evaluation and threshold optimization
