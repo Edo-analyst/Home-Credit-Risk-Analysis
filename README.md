@@ -30,8 +30,6 @@ Only **8.1%** of applicants defaulted. A model that approves everyone would be 9
 
 ## 📈 Results
 
-Hyperparameters are tuned by 5-fold cross-validation **inside the training set**. The validation set is used to compare the five tuned models.
-
 | Model | CV AP | Val AP | Val PR-AUC | CV ROC-AUC | Val ROC-AUC |
 | --- | --- | --- | --- | --- | --- |
 | **LightGBM** | **0.240 ± 0.007** | **0.239** | **0.239** | **0.757 ± 0.006** | **0.753** |
@@ -42,13 +40,9 @@ Hyperparameters are tuned by 5-fold cross-validation **inside the training set**
 
 *± is the standard deviation across the five cross-validation folds.*
 
-**LightGBM is the model carried to the test set.** It ranks first on every ranking metric — CV AP 0.240, validation AP 0.239, PR-AUC 0.239, ROC-AUC 0.753, roughly 3× the 0.081 no-skill AP — and it ranks first in cross-validation and again on validation, so the ordering is not an artefact of the fold means the search optimised. No model loses more than 0.005 AP moving from folds to validation, so the whole comparison is stable rather than lucky. Its lead over XGBoost is narrow, at 0.003 AP and 0.001 ROC-AUC.
+**LightGBM is carried to the test set.** It ranks first in cross-validation and again on validation, so the ordering is not an artefact of the fold means the search optimised, though its lead over XGBoost is only 0.003 AP. It also tunes in roughly two-thirds of XGBoost's time. Its winning configuration sits on two edges of its grid (`min_child_samples` at the maximum 800, `colsample_bytree` at the minimum 0.3) with 10 of 81 combinations sampled, so 0.240 should be read as a floor.
 
-Three practical points favour it beyond the score. It tunes in 5.2 minutes against XGBoost's 8.2 for the same 10 candidates. Random Forest costs 18 minutes and a 12.3 MB artifact to land 0.017 AP lower — the worst trade in the table. And LightGBM's winning configuration sits on two edges of its grid (`min_child_samples` at the maximum 800, `colsample_bytree` at the minimum 0.3) with only 10 of 81 combinations sampled, so the search is still asking for more regularisation than it was offered and 0.240 should be read as a floor.
-
-**Logistic Regression holds up.** It is 0.005 AP behind Random Forest (0.217 against 0.221) but ahead on ROC-AUC (0.742 against 0.740), and it scores only 0.002 higher on the data it was fitted to than on held-out folds, against roughly 0.05 for the boosters. The ~0.02 AP the boosters add is what interpretability costs here. The elastic net zeroed none of its 97 features at the winning `C = 1`, `l1_ratio = 0.5` — the penalty regularised without selecting.
-
-AP decides the ranking rather than the trapezoidal area under the PR curve. The two agree to 0.0003 wherever a model scores each applicant distinctly, but the Decision Tree emits only 157 distinct scores — one per leaf — and interpolating across so few points lifts its PR-AUC to 0.202 against an AP of 0.192.
+**Logistic Regression holds up.** It comes within 0.005 AP of Random Forest and ahead of it on ROC-AUC, while scoring only 0.002 higher on its own training data against roughly 0.05 for the boosters. The ~0.02 AP the boosters add is what interpretability costs here.
 
 ### Held-out test set
 
@@ -72,7 +66,7 @@ At the default 0.50 cutoff the model identifies 2,418 of 3,724 defaults — 64.9
 ├── notebooks/
 │   ├── 01_eda.ipynb                # ✅ exploratory analysis
 │   ├── 02_preprocessing.ipynb      # ✅ cleaning, features, pipelines
-│   ├── 03_modeling.ipynb           # ✅ modeling, comparison
+│   ├── 03_modeling.ipynb           # ✅ training, validation, test
 │   └── 04_interpretability.ipynb   # 🔜 SHAP
 ├── data/  
     ├── raw                     # raw data from Kaggle
